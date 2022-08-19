@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Box, Stack, Typography, Divider, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
+import { Box, Stack, Typography, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
 
 const SideMenu = ({ token, spotifyApi, setPage, resetSearch }) => {
     const [userInfo, setUserInfo] = useState();
@@ -19,6 +19,11 @@ const SideMenu = ({ token, spotifyApi, setPage, resetSearch }) => {
         });
     }, [token]);
 
+    function changePage(page) {
+        setPage("");
+        setPage(page);
+    }
+
     return (
         <div>
             <Box sx={{ width: "17vw", background: "linear-gradient(#A52E7E, #5D0085)", position: "fixed", top: "0", left: "0", height: "100vh", boxShadow: "2px -1vh 20px black" }}>
@@ -32,7 +37,7 @@ const SideMenu = ({ token, spotifyApi, setPage, resetSearch }) => {
                     </Box>
                     <List>
                         {menu?.map((menuItem) => (
-                            <ListItem key={menuItem} onClick={() => { setPage(menuItem); resetSearch("") }}>
+                            <ListItem key={menuItem} onClick={() => { changePage(menuItem); resetSearch("") }}>
                                 <ListItemButton sx={{ padding: "2vh 5vw 2vh" }}>
                                     <ListItemText primary={menuItem} />
                                 </ListItemButton>

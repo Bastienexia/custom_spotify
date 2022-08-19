@@ -19,7 +19,6 @@ const PlaylistTracks = ({ playlist, spotifyApi, playTrack }) => {
         spotifyApi.setAccessToken(accessToken);
 
         spotifyApi.getPlaylistTracks(playlist.id).then((res) => {
-            console.log(res)
             let temp = res?.body;
             setTotalTracks(temp.total);
             setTracks1(

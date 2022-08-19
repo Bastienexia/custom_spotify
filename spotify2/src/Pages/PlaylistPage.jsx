@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, IconButton } from "@mui/material";
 import PlaylistVignette from "../Components/PlaylistVignette";
 import PlaylistTracks from "./PlaylistTracks";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const PlaylistPage = ({ spotifyApi, playTrack }) => {
     const [playlists, setPlaylists] = useState([]);
@@ -55,7 +56,14 @@ const PlaylistPage = ({ spotifyApi, playTrack }) => {
             </div>
         )
     } else {
-        return <PlaylistTracks spotifyApi={spotifyApi} playTrack={playTrack} playlist={activePlaylist} />
+        return (
+            <div>
+                <IconButton sx={{ backgroundColor: "#5D0085", color: "white", marginLeft: "5vw" }} onClick={() => setActivePlaylist()}><ArrowBackIosNewIcon fontSize="large" /></IconButton>
+                <br />
+                <br />
+                <PlaylistTracks spotifyApi={spotifyApi} playTrack={playTrack} playlist={activePlaylist} />
+            </div>
+        )
     }
 };
 

@@ -1,8 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, IconButton } from "@mui/material";
 import ArtistsVignette from "../Components/ArtistsVignette";
 import PersonalArtistPage from "./PersonalArtistPage";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const ArtistsPage = ({ playTrack, spotifyApi }) => {
     const [artistsList, setArtistsList] = useState();
@@ -37,9 +38,6 @@ const ArtistsPage = ({ playTrack, spotifyApi }) => {
         })
     }, [accessToken]);
 
-    function test() {
-        console.log(artistsList);
-    }
 
     if (!activeArtist) {
         return (
@@ -57,7 +55,14 @@ const ArtistsPage = ({ playTrack, spotifyApi }) => {
             </div>
         )
     } else {
-        return <PersonalArtistPage artist={activeArtist} spotifyApi={spotifyApi} playTrack={playTrack} />
+        return (
+            <div>
+                <IconButton sx={{ backgroundColor: "#5D0085", color: "white", marginLeft: "5vw" }} onClick={() => setActiveArtist()}><ArrowBackIosNewIcon fontSize="large" /></IconButton>
+                <br />
+                <br />
+                <PersonalArtistPage artist={activeArtist} spotifyApi={spotifyApi} playTrack={playTrack} />
+            </div>
+        )
     }
 };
 

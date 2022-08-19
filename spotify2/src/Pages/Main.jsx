@@ -46,10 +46,10 @@ const Main = ({ code }) => {
 
     return (
         <div>
-            <Box sx={{ marginTop: "0vh", color: "white" }}>
+            <Box sx={{ marginTop: "0vh", color: "white", minHeight: "100vh", width: "98.8vw", background: "linear-Gradient(to bottom right, #9400D3, purple)" }}>
                 <SideMenu token={accessToken} spotifyApi={spotifyApi} setPage={changePage} resetSearch={funcSetSearch} />
                 <Box sx={{ marginBottom: "10vh" }}>
-                    <Box sx={{ marginLeft: "16vw", height: "100%", background: "linear-Gradient(to bottom right, #9400D3, purple)", width: "82.5vw", marginTop: "-1vh" }}>
+                    <Box sx={{ marginLeft: "16vw", height: "100%", width: "auto", marginTop: "-1vh" }}>
                         <br />
                         <Search setSearch={funcSetSearch} search={search} />
                         <br />

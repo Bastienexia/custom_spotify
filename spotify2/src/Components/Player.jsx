@@ -7,7 +7,6 @@ const Player = ({ accessToken, trackUri }) => {
   const [trackList, setTrackList] = useState([]);
 
   useEffect(() => {
-    console.log("TrackUri", trackUri);
     if (!trackUri) return;
 
     if (!trackUri[0]) {

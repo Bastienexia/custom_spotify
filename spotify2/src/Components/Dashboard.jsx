@@ -19,7 +19,6 @@ const Dashboard = ({ code }) => {
   });
 
   function playTrack(track) {
-    console.log(track);
     setPlayingTrack(track);
   }
 
@@ -32,15 +31,10 @@ const Dashboard = ({ code }) => {
     if (!search) return setSearchResults([]);
     if (!accessToken) return;
 
-    spotifyApi
-      .getPlaylist("3HKkPntNrPRPUQuBXx7E9q")
-      .then((res) => console.log(res.body));
     let temp;
     spotifyApi
       .searchTracks(search)
       .then((res) => {
-        console.log("RESULT", res);
-        if (!res.body.tracks) console.log("NON");
         temp = res?.body?.tracks?.items;
         setSearchResults(
           temp.map((track) => {

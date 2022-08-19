@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import useAuth from "../useLogic/useAuth";
-import SpotifyWebApi from "spotify-web-api-node";
-import { Button, Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography, IconButton } from "@mui/material";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import TrackSearchResult from "../Components/TrackSearchResult";
-import Player from "../Components/Player";
+import PersonalArtistPage from "./PersonalArtistPage";
 
 const Accueil = ({ accessToken, playTrack, spotifyApi }) => {
   const [topArtists, setTopArtists] = useState([]);
   const [topTracks, setTopTracks] = useState([]);
+  const [activeArtist, setActiveArtist] = useState();
 
   useEffect(() => {
     if (!accessToken) return;
@@ -31,6 +31,7 @@ const Accueil = ({ accessToken, playTrack, spotifyApi }) => {
             uri: track.uri,
             albumUrl: smallestAlbumImage.url,
             artist: track.followers.total,
+            id: track.id,
           };
         })
       );
@@ -62,38 +63,46 @@ const Accueil = ({ accessToken, playTrack, spotifyApi }) => {
     });
   }, [accessToken]);
 
-  function test() {
-    console.log(topArtists);
-  }
-  return (
-    <div>
-      <Stack direction="row" sx={{ width: "100%" }}>
-        <Stack sx={{ width: "100%" }} alignItems="center">
-          <Typography variant="h4">Top tracks</Typography>
-          <br />
-          {topTracks?.map((track) => (
-            <TrackSearchResult
-              track={track}
-              key={track.uri}
-              playTrack={playTrack}
-            />
-          ))}
+  if (!activeArtist) {
+    return (
+      <div>
+        <Stack direction="row" sx={{ width: "100%" }}>
+          <Stack sx={{ width: "100%" }} alignItems="center">
+            <Typography variant="h4">Top tracks</Typography>
+            <br />
+            {topTracks?.map((track) => (
+              <TrackSearchResult
+                track={track}
+                key={track.uri}
+                playTrack={playTrack}
+              />
+            ))}
+          </Stack>
+          <Stack sx={{ width: "100%" }} alignItems="center">
+            <Typography variant="h4">Top artists</Typography>
+            <br />
+            {topArtists?.map((track) => (
+              <TrackSearchResult
+                track={track}
+                key={track.uri}
+                playTrack={setActiveArtist}
+              />
+            ))}
+          </Stack>
         </Stack>
-        <Stack sx={{ width: "100%" }} alignItems="center">
-          <Typography variant="h4">Top artists</Typography>
-          <br />
-          {topArtists?.map((track) => (
-            <TrackSearchResult
-              track={track}
-              key={track.uri}
-              playTrack={playTrack}
-            />
-          ))}
-        </Stack>
-      </Stack>
 
-    </div>
-  );
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <IconButton sx={{ backgroundColor: "#5D0085", color: "white", marginLeft: "5vw" }} onClick={() => setActiveArtist()}><ArrowBackIosNewIcon fontSize="large" /></IconButton>
+        <br />
+        <br />
+        <PersonalArtistPage artist={activeArtist} spotifyApi={spotifyApi} playTrack={playTrack} />
+      </div>
+    )
+  }
 };
 
 export default Accueil;

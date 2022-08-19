@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Box, Typography, Stack, Grid } from "@mui/material";
+import { Box, Typography, IconButton, Grid } from "@mui/material";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import AlbumVignette from "../Components/AlbumVignette";
 import AlbumTracks from "./AlbumTracks";
 
@@ -122,6 +123,7 @@ const AlbumPage = ({ spotifyApi, playTrack }) => {
     if (!activeAlbum) {
         return (
             <div>
+
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
                     <Typography variant="h4">My saved albums</Typography>
                 </Box>
@@ -149,7 +151,14 @@ const AlbumPage = ({ spotifyApi, playTrack }) => {
                 </Grid>
             </div>)
     } else {
-        return <AlbumTracks album={activeAlbum} spotifyApi={spotifyApi} playTrack={playTrack} />
+        return (
+            <div>
+                <IconButton sx={{ backgroundColor: "#5D0085", color: "white", marginLeft: "5vw" }} onClick={() => setActiveAlbum()}><ArrowBackIosNewIcon fontSize="large" /></IconButton>
+                <br />
+                <br />
+                <AlbumTracks album={activeAlbum} spotifyApi={spotifyApi} playTrack={playTrack} />
+            </div>
+        )
     }
 };
 
