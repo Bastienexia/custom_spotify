@@ -3,6 +3,8 @@ import TrackSearchResult from "../Components/TrackSearchResult";
 import { Stack, Box, Typography, Grid, Divider, IconButton } from "@mui/material";
 import PlaylistPlayIcon from '@mui/icons-material/PlaylistPlay';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
+import AddIcon from '@mui/icons-material/Add';
+import AddTracksPlaylist from "../Components/AddTracksPlaylist";
 
 const PlaylistTracks = ({ playlist, spotifyApi, playTrack }) => {
     const [tracks1, setTracks1] = useState([]);
@@ -11,7 +13,9 @@ const PlaylistTracks = ({ playlist, spotifyApi, playTrack }) => {
     const [tracks4, setTracks4] = useState([]);
     const [totalTracks, setTotalTracks] = useState();
     const [randomTracks, setRandomTracks] = useState([]);
+    const [add, setAdd] = useState(false);
     const accessToken = window.localStorage.getItem("accessToken");
+
 
     useEffect(() => {
         if (!accessToken) return;
@@ -50,6 +54,7 @@ const PlaylistTracks = ({ playlist, spotifyApi, playTrack }) => {
             spotifyApi.setAccessToken(accessToken);
             spotifyApi.getPlaylistTracks(playlist.id, { offset: 100 }).then((res) => {
                 let temp = res?.body;
+                console.log('te', temp);
                 setTracks2(
                     temp?.items.filter((track) => { if (track?.is_local === true) { return false; } else { return true; } }).map((track) => {
                         const bestImage = track?.track?.album?.images.reduce((best, image) => {
@@ -134,6 +139,14 @@ const PlaylistTracks = ({ playlist, spotifyApi, playTrack }) => {
         setRandomTracks([...tracks1, ...tracks2].sort((a, b) => 0.5 - Math.random()));
     }
 
+    function addButton() {
+        if (!add) {
+            setAdd(true);
+        } else {
+            setAdd(false);
+        }
+    }
+
     return (
         <div>
             <Box sx={{ marginLeft: "6vw" }}>
@@ -148,12 +161,19 @@ const PlaylistTracks = ({ playlist, spotifyApi, playTrack }) => {
                         </Stack>
                     </Stack>
                     <Stack direction="row" spacing={2} >
+                        <IconButton sx={{ backgroundColor: "#5D0085", color: "white" }} onClick={() => addButton()}><AddIcon fontSize="large" /></IconButton>
                         <IconButton sx={{ backgroundColor: "#5D0085", color: "white" }} onClick={() => playAll()}><PlaylistPlayIcon fontSize="large" /></IconButton>
                         <IconButton sx={{ backgroundColor: "#5D0085", color: "white" }} onClick={() => playAllRandom()}><ShuffleIcon fontSize="large" /></IconButton>
                     </Stack>
                 </Stack>
                 <br />
                 <Box sx={{ backgroundColor: "black", height: "0.1vh", width: "90%" }}></Box>
+                {add ? (
+                    <div>
+                        <AddTracksPlaylist spotifyApi={spotifyApi} />
+                        <Box sx={{ backgroundColor: "black", height: "0.1vh", width: "90%" }}></Box>
+                    </div>
+                ) : <></>}
                 <Grid container sx={{ width: "100%", marginTop: "5vh", flexGrow: 1 }} justifyContent="center">
                     {tracks1?.map((track) => {
                         if (!track) {

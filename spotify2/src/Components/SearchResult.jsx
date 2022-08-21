@@ -6,7 +6,8 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import PersonalArtistPage from "../Pages/PersonalArtistPage";
 import ArtistsVignette from "./ArtistsVignette";
 
-const SearchResult = ({ token, spotifyApi, search, playTrack }) => {
+const SearchResult = ({ spotifyApi, search, playTrack }) => {
+    const token = localStorage.getItem("accessToken");
     const [searchResults, setSearchResults] = useState([]);
     const [activeArtist, setActiveArtist] = useState();
     const [searchArtists, setSearchArtists] = useState([]);
