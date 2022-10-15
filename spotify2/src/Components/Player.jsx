@@ -10,20 +10,22 @@ const Player = ({ accessToken, trackUri }) => {
     if (!trackUri) return;
 
     if (!trackUri[0]) {
+      if (!trackUri.uri) return;
       setTrackList(trackUri?.uri);
     } else {
+      console.log("tableau");
       setTrackList(
         trackUri?.map((track) => {
           return track?.uri;
         })
-      )
+      );
     }
-  }, [trackUri])
+  }, [trackUri]);
 
   useEffect(() => {
     if (!trackList) return;
 
-    setPlay(true)
+    setPlay(true);
   }, [trackList]);
 
   if (!accessToken) return null;
@@ -31,7 +33,15 @@ const Player = ({ accessToken, trackUri }) => {
   return (
     <SpotifyPlayer
       play={play}
-      styles={{ height: "10vh", bgColor: "#5D0085", color: "white", sliderColor: "#A52E7E", trackArtistColor: "white", trackNameColor: "white", sliderHandleColor: "#c65d89" }}
+      styles={{
+        height: "10vh",
+        bgColor: "#5D0085",
+        color: "white",
+        sliderColor: "#A52E7E",
+        trackArtistColor: "white",
+        trackNameColor: "white",
+        sliderHandleColor: "#c65d89",
+      }}
       callback={(state) => {
         if (!state.isPlaying) {
           setPlay(false);

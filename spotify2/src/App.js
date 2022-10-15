@@ -1,6 +1,6 @@
 import Login from "./Components/Login";
-import Dashboard from "./Components/Dashboard";
 import Main from "./Pages/Main";
+import "./reset.css";
 
 const code = new URLSearchParams(window.location.search).get("code");
 

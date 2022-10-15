@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Stack, Typography, IconButton } from "@mui/material";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import TrackSearchResult from "../Components/TrackSearchResult";
 import PersonalArtistPage from "./PersonalArtistPage";
+import { Link } from "react-router-dom";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const Accueil = ({ accessToken, playTrack, spotifyApi }) => {
   const [topArtists, setTopArtists] = useState([]);
@@ -61,7 +63,7 @@ const Accueil = ({ accessToken, playTrack, spotifyApi }) => {
         })
       );
     });
-  }, [accessToken]);
+  }, [accessToken, spotifyApi]);
 
   if (!activeArtist) {
     return (
@@ -82,26 +84,32 @@ const Accueil = ({ accessToken, playTrack, spotifyApi }) => {
             <Typography variant="h4">Top artists</Typography>
             <br />
             {topArtists?.map((track) => (
-              <TrackSearchResult
-                track={track}
-                key={track.uri}
-                playTrack={setActiveArtist}
-              />
+              <Link to={"/Artist/" + track?.id} key={track.uri}>
+                <TrackSearchResult track={track} key={track.uri} />
+              </Link>
             ))}
           </Stack>
         </Stack>
-
       </div>
     );
   } else {
     return (
       <div>
-        <IconButton sx={{ backgroundColor: "#5D0085", color: "white", marginLeft: "5vw" }} onClick={() => setActiveArtist()}><ArrowBackIosNewIcon fontSize="large" /></IconButton>
+        <IconButton
+          sx={{ backgroundColor: "#5D0085", color: "white", marginLeft: "5vw" }}
+          onClick={() => setActiveArtist()}
+        >
+          <ArrowBackIosNewIcon fontSize="large" />
+        </IconButton>
         <br />
         <br />
-        <PersonalArtistPage artist={activeArtist} spotifyApi={spotifyApi} playTrack={playTrack} />
+        <PersonalArtistPage
+          artist={activeArtist}
+          spotifyApi={spotifyApi}
+          playTrack={playTrack}
+        />
       </div>
-    )
+    );
   }
 };
 
