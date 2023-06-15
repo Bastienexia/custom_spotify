@@ -35,12 +35,12 @@ const Player = ({ accessToken, trackUri }) => {
       play={play}
       styles={{
         height: "10vh",
-        bgColor: "#5D0085",
+        bgColor: "#2F3136",
         color: "white",
-        sliderColor: "#A52E7E",
+        sliderColor: "#2F3136",
         trackArtistColor: "white",
         trackNameColor: "white",
-        sliderHandleColor: "#c65d89",
+        sliderHandleColor: "#2F3136",
       }}
       callback={(state) => {
         if (!state.isPlaying) {

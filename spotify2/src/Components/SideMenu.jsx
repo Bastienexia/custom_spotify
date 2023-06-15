@@ -33,7 +33,7 @@ const SideMenu = ({ token, spotifyApi, setPage, resetSearch }) => {
       <Box
         sx={{
           width: "17vw",
-          background: "linear-gradient(#A52E7E, #5D0085)",
+          background: "#2F3136",
           position: "fixed",
           top: "0",
           left: "0",

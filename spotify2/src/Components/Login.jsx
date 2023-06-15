@@ -13,7 +13,7 @@ const Login = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-Gradient(to bottom right, #9400D3, purple)",
+          background: "#36393F",
         }}
       >
         <Button

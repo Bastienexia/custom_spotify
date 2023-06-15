@@ -204,7 +204,9 @@ const PlaylistTracks = ({ spotifyApi, playTrack }) => {
 
   function playAllRandom() {
     setRandomTracks(
-      [...tracks1, ...tracks2].sort((a, b) => 0.5 - Math.random())
+      [...tracks1, ...tracks2, ...tracks3, ...tracks4].sort(
+        (a, b) => 0.5 - Math.random()
+      )
     );
   }
 

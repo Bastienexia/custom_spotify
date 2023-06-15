@@ -49,8 +49,7 @@ const Main = ({ code }) => {
           marginTop: "0vh",
           color: "white",
           minHeight: "100vh",
-          background:
-            "linear-gradient(to top left, #ff00cc 0%, rgba(105,5,144,1) 80%)",
+          background: "#36393F",
           overflow: "hidden",
         }}
       >
