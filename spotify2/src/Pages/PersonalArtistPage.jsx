@@ -18,7 +18,6 @@ const PersonalArtistPage = ({ spotifyApi, playTrack }) => {
     spotifyApi.setAccessToken(accessToken);
 
     spotifyApi.getArtist(artistId).then((res) => {
-      console.log("ARTIST : ", res?.body);
       const smallestArtistImage = res?.body?.images.reduce(
         (smallest, image) => {
           if (image.height < smallest.height) {

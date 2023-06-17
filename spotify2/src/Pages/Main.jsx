@@ -18,6 +18,8 @@ import AlbumTracks from "./AlbumTracks";
 import { Scrollbars } from "react-custom-scrollbars-2";
 
 const Main = ({ code }) => {
+  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+
   const accessToken = useAuth(code);
   const [playingTrack, setPlayingTrack] = useState();
   const [search, setSearch] = useState("");
@@ -31,7 +33,7 @@ const Main = ({ code }) => {
   }, [accessToken]);
 
   const spotifyApi = new SpotifyWebApi({
-    clientId: "fefb2085586f4e7ab7ac04aaa2568ced",
+    clientId: CLIENT_ID,
   });
 
   function playTrack(track) {

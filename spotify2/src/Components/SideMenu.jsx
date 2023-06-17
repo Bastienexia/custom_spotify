@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 
 const SideMenu = ({ token, spotifyApi, setPage, resetSearch }) => {
   const [userInfo, setUserInfo] = useState();
-  const menu = ["Accueil", "Albums", "Playlists", "Artists", "Lyrics"];
+  const menu = ["Accueil", "Albums", "Playlists", "Artists"];
 
   useEffect(() => {
     if (!token) return;

@@ -2,7 +2,13 @@ const express = require("express");
 const spotifyWebApi = require("spotify-web-api-node");
 const cors = require("cors");
 
+require("dotenv").config();
+
 const app = express();
+
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_SECRET;
+console.log("ID : ", clientId, "secret : ", clientSecret);
 
 app.use(express.json());
 app.use(cors());
@@ -24,8 +30,8 @@ app.post("/login", (req, res) => {
 
   const spotifyApi = new spotifyWebApi({
     redirectUri: "http://localhost:3000",
-    clientId: "fefb2085586f4e7ab7ac04aaa2568ced",
-    clientSecret: "c90338e7b5f040efa5dec376ad28c958",
+    clientId: clientId,
+    clientSecret: clientSecret,
   });
 
   spotifyApi
@@ -38,7 +44,7 @@ app.post("/login", (req, res) => {
       });
     })
     .catch((error) => {
-      //res.sendStatus(400).json(error);
+      res.sendStatus(400).json(error);
     });
 });
 
@@ -46,8 +52,8 @@ app.post("/refresh", (req, res) => {
   const refreshToken = req.body.refreshToken;
   const spotifyApi = new spotifyWebApi({
     redirectUri: "http://localhost:3000",
-    clientId: "fefb2085586f4e7ab7ac04aaa2568ced",
-    clientSecret: "c90338e7b5f040efa5dec376ad28c958",
+    clientId: clientId,
+    clientSecret: clientSecret,
     refreshToken,
   });
 

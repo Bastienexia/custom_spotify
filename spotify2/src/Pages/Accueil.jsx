@@ -5,7 +5,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import TrackSearchResult from "../Components/TrackSearchResult";
 import PersonalArtistPage from "./PersonalArtistPage";
 import { Link } from "react-router-dom";
-import { Scrollbars } from "react-custom-scrollbars-2";
 
 const Accueil = ({ accessToken, playTrack, spotifyApi }) => {
   const [topArtists, setTopArtists] = useState([]);

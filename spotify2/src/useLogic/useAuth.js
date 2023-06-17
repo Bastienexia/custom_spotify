@@ -5,10 +5,11 @@ const useAuth = (code) => {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [expiresIn, setExpiresIn] = useState();
+  const API_URI = process.env.REACT_APP_API_URI;
 
   useEffect(() => {
     axios
-      .post("http://localhost:3001/login", {
+      .post(API_URI + "/login", {
         code: code,
       })
       .then((response) => {
@@ -26,7 +27,7 @@ const useAuth = (code) => {
     if (!refreshToken || !expiresIn) return;
     const interval = setInterval(() => {
       axios
-        .post("http://localhost:3001/refresh", {
+        .post(API_URI + "/refresh", {
           refreshToken,
         })
         .then((response) => {
