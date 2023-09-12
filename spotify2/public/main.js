@@ -3,7 +3,6 @@ const { app, BrowserWindow } = require("electron");
 require("@electron/remote/main").initialize();
 
 function createWindow() {
-  console.log("Called");
   const win = new BrowserWindow({
     width: 800,
     height: 600,

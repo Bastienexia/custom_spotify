@@ -8,7 +8,6 @@ const app = express();
 
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
-console.log("ID : ", clientId, "secret : ", clientSecret);
 
 app.use(express.json());
 app.use(cors());
@@ -60,7 +59,6 @@ app.post("/refresh", (req, res) => {
   spotifyApi
     .refreshAccessToken()
     .then((data) => {
-      console.log("The access token has been refreshed !");
       res.json({
         accessToken: data.body.access_token,
         expiresIn: data.body.expires_in,

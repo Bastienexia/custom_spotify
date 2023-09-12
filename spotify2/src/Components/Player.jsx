@@ -13,7 +13,6 @@ const Player = ({ accessToken, trackUri }) => {
       if (!trackUri.uri) return;
       setTrackList(trackUri?.uri);
     } else {
-      console.log("tableau");
       setTrackList(
         trackUri?.map((track) => {
           return track?.uri;

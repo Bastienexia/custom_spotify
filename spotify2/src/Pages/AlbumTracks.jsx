@@ -16,10 +16,8 @@ const AlbumTracks = ({ spotifyApi, playTrack }) => {
     if (!accessToken) return;
     if (!albumId) return;
     spotifyApi.setAccessToken(accessToken);
-    console.log(albumId);
 
     spotifyApi.getAlbum(albumId).then((res) => {
-      console.log(res?.body);
       setAlbum(res?.body);
     });
   }, [accessToken, albumId, spotifyApi]);

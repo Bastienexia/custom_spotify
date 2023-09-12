@@ -6,7 +6,6 @@ const PlaylistVignette = ({ playlist }) => {
     <div>
       <Stack
         direction="row"
-        onClick={() => console.log(playlist)}
         sx={{
           width: "20vw",
           boxShadow: "2px 0 5px black",
